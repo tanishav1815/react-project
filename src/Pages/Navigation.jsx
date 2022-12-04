@@ -5,6 +5,7 @@ const Navigation = () => {
     return (
         <div>
             <h1> player page 🔥 {id} </h1> 
+            <div>Nature</div>
 
     <hr />
     

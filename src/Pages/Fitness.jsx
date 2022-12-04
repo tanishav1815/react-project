@@ -1,11 +1,20 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import Footer from '../Components/Footer'
 import { Link } from 'react-router-dom';
-import fitness from '../fitness.json';
+import axios from 'axios';
+// import fitness from '../fitness.json';
 
 
 function Fitness() {
   const url ="../Navigation/";
+
+  const [data, setData] = useState([]);
+
+  useEffect(()=>{
+    axios.get("https://new-backend-nu.vercel.app/api/fitness")
+    .then((res)=>setData(res.data));
+  });
+
   return (
     <section>
       <div className="homeData"> 
@@ -26,7 +35,7 @@ function Fitness() {
         <div className="inner">
 
         
-          {
+          {/* {
             fitness && fitness.map(fitness=>{
               return(
                 <div className="box" key={fitness.id}>
@@ -37,7 +46,17 @@ function Fitness() {
                   </div>
               )
             })
-          }
+          } */}
+
+{
+          data.map((fitness)=>{
+            const {id,icon,caption}= fitness;
+            return <div className='box' key={id}>
+              <img src={icon} alt="loading" className='imgR' />
+              {caption}
+            </div>
+          })
+        }
         </div>
         </Link>
 
@@ -54,12 +73,28 @@ function Fitness() {
       <div className='linebr'></div>
       <div className="innerA">
           {
-            fitness && fitness.map(fitness =>{
+            // fitness && fitness.map(fitness =>{
+            //   return(
+            //     <div className="box" key={fitness.id}>
+            //       <img src={fitness.icon} alt="loading" className="imgR"/>
+            //       <span className="caption">{fitness.caption} </span><br/>
+            //       {/* {fitness.details} */}
+                 
+            //       <br/>   
+            //       <div className="line2"></div>
+            //       </div>
+                  
+            //   )
+            // })
+          }
+
+{ data.map((fitness) =>{
+              const {id,icon,caption, details}= fitness;
               return(
-                <div className="box" key={fitness.id}>
-                  <img src={fitness.icon} alt="loading" className="imgR"/>
-                  <span className="caption">{fitness.caption} </span><br/>
-                  {/* {fitness.details} */}
+                <div className="box" key={id}>
+                  <img src={icon} alt="loading" className="imgR"/>
+                  <span className="caption">{caption} </span><br/>
+                  {/* {details} */}
                  
                   <br/>   
                   <div className="line2"></div>
@@ -67,7 +102,7 @@ function Fitness() {
                   
               )
             })
-          }
+                }
                 
           
 
@@ -82,20 +117,35 @@ function Fitness() {
       <div className='linebr'></div>
       <div className="innerL">
           {
-            fitness && fitness.map(fitness =>{
+            // fitness && fitness.map(fitness =>{
+            //   return(
+            //     <div className="box2" key={fitness.id}>
+            //       {/* <img src={fitness.icon} alt="loading" className="imgR"/> */}
+            //       <div className="caption">{fitness.caption}</div>
+            //      <div classNameme="details"> {fitness.details}</div>
+            //       <br/>   
+            //       {/* <div className="line2"></div> */}
+            //       </div>
+                  
+            //   )
+            // })
+          }
+
+           { data.map((fitness) =>{
+              const {id,icon,caption, details}= fitness;
               return(
-                <div className="box2" key={fitness.id}>
-                  {/* <img src={fitness.icon} alt="loading" className="imgR"/> */}
-                  <div className="caption">{fitness.caption}</div>
-                 <div classNameme="details"> {fitness.details}</div>
+                <div className="box" key={id}>
+                  <img src={icon} alt="loading" className="imgR"/>
+                  <span className="caption">{caption} </span><br/>
+                  {details}
+                 
                   <br/>   
                   {/* <div className="line2"></div> */}
                   </div>
                   
               )
             })
-          }
-                
+                }
           
 
         </div>

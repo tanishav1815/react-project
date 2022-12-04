@@ -28,6 +28,8 @@ const Navbar = () => {
         <Link to="/Fitness"  className="links"><p>Fitness</p></Link>
 
         <Link to="/Food"  className="links"><p>Food</p></Link>
+
+        <Link to="/Sports1"  className="links"><p>Sports</p></Link>
         
       </div>
       

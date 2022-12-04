@@ -1,13 +1,30 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Footer from '../Components/Footer'
 import { Link } from 'react-router-dom';
-import bolly from '../bolly.json';
+import axios from 'axios';
+// import bolly from '../bolly.json';
+
 
 
 
 function Bollywood() {
 
   const url="../Navigation/";
+
+  // const [data,setData] = useState([]);
+  // useEffect (()=>{
+  //     fetch(`https://backend-blog-taani.herokuapp.com/home/bollywood`)
+  //     .then (res=>res.json())
+  //     .then(data=> setData(data))
+  // }, []);
+
+  const [data, setData] = useState([]);
+
+  useEffect(()=>{
+    axios.get("https://new-backend-nu.vercel.app/api/bollywood")
+    .then((res)=>setData(res.data));
+  })
+
 
   return (
 
@@ -30,18 +47,39 @@ function Bollywood() {
         <div className="inner">
 
         
-          {
-            bolly && bolly.map(bolly =>{
+          {/* {
+             data.map(() =>{
               return(
-                <div className="box" key={bolly.id}>
-                  <img src={bolly.icon} alt="loading" className="imgR"/>
-                  {bolly.caption}
+                <div className="box" key={data.id}>
+                  <img src={data.icon} alt="loading" className="imgR"/>
+                  {data.caption}
                   <br/>
 
                   </div>
               )
             })
-          }
+          } */}
+
+        {/* {data.map((bollywood)=>{
+        const {id,caption,details} = bollywood;
+        return <div className='card' key={id}>
+          <h2>{caption}</h2>
+          <p>{details}</p>
+        </div>
+        })} */}
+
+
+        {
+          data.map((bollywood)=>{
+            const {id,icon,caption}= bollywood;
+            return <div className='box' key={id}>
+              <img src={icon} alt="loading" className='imgR' />
+              {caption}
+            </div>
+          })
+        }
+
+
         </div>
         </Link>
 
@@ -58,11 +96,12 @@ function Bollywood() {
       <div className='linebr'></div>
       <div className="innerA">
           {
-            bolly && bolly.map(bolly =>{
+            data.map((bollywood) =>{
+              const {id,icon,caption}= bollywood;
               return(
-                <div className="box" key={bolly.id}>
-                  <img src={bolly.icon} alt="loading" className="imgR"/>
-                  <span className="caption">{bolly.caption} </span><br/>
+                <div className="box" key={id}>
+                  <img src={icon} alt="loading" className="imgR"/>
+                  <span className="caption">{caption} </span><br/>
                   {/* {record.details} */}
                  
                   <br/>   
@@ -86,12 +125,13 @@ function Bollywood() {
       <div className='linebr'></div>
       <div className="innerL">
           {
-            bolly && bolly.map(bolly=>{
+            data.map((bollywood)=>{
+              const {id,details,icon,caption}= bollywood;
               return(
-                <div className="box2" key={bolly.id}>
-                  {/* <img src={record.icon} alt="loading" className="imgR"/> */}
-                  <div className="caption">{bolly.caption}</div>
-                 <div classNameme="details"> {bolly.details}</div>
+                <div className="box2" key={id}>
+                  <img src={icon} alt="loading" className="imgR"/>
+                  <div className="caption">{caption}</div>
+                 <div classNameme="details"> {details}</div>
                   <br/>   
                   {/* <div className="line2"></div> */}
                   </div>

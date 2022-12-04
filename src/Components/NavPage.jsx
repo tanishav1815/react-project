@@ -6,6 +6,7 @@ import Technology from '../Pages/Technology'
 import Hollywood from "../Pages/Hollywood"
 import Fitness from "../Pages/Fitness"
 import Food from "../Pages/Food"
+import Sports1 from "../Pages/Sports1"
 
 const NavPage = () => {
   return (
@@ -18,6 +19,8 @@ const NavPage = () => {
           <Route path="/Hollywood" element={<Hollywood />} />
           <Route path="/Fitness" element={<Fitness />} />
           <Route path="/Food" element={<Food />} />
+          <Route path="/Sports1" element={<Sports1 />} />
+
         </Routes>
       </section>
     </React.Fragment>
